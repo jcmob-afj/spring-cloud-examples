@@ -7,12 +7,12 @@ spring:
     host: localhost
     password:
     port: 6379
-  cloud:
-    gateway:
-     discovery:
-        locator:
-         enabled: true
-     routes:
+#  cloud:
+#    gateway:
+#     discovery:
+#        locator:
+#         enabled: true
+#     routes:
 #     - id: add_request_parameter_route_01
 #       uri: http://localhost:9000
 #       filters:
@@ -30,17 +30,17 @@ spring:
 #       - Path=/p2
 
 
-     - id: produce01
-       uri: http://localhost:9000
-       predicates:
-       - Path=/**
-       - Weight=produce, 10
-
-     - id: produce02
-       uri: http://localhost:9001
-       predicates:
-       - Path=/**
-       - Weight=produce, 90
+#     - id: produce01
+#       uri: http://localhost:9000
+#       predicates:
+#       - Path=/**
+#       - Weight=produce, 10
+#
+#     - id: produce02
+#       uri: http://localhost:9001
+#       predicates:
+#       - Path=/**
+#       - Weight=produce, 90
 
 #     - id: add_request_parameter_route
 ##       uri: http://localhost:9000
@@ -84,3 +84,13 @@ eureka:
 logging:
   level:
     org.springframework.cloud.gateway: debug
+
+# 暴露端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
